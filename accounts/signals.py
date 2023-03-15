@@ -9,7 +9,7 @@ from .models import User, UserProfile
 def post_save_create_profile_receiver(sender, instance, created, **kwargs):
     print(created)
     if created:
-            UserProfile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
     else:
         try:
             profile = UserProfile.objects.get(user=instance)
