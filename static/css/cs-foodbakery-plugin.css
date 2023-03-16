@@ -1863,7 +1863,7 @@ div.daterangepicker { border: 1px solid #eceef4; -webkit-box-shadow: none; box-s
 .radio-holder .input-radio input[type="radio"]:checked + label:after { -webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
 /*Radio Style End*/
 .user-dashboard .has-seperator > li { margin-bottom: 20px; padding-bottom: 10px; position: relative; }
-.user-dashboard .has-seperator > li:after { content: ""; border-bottom: 3px solid #eeeeee; position: absolute; bottom: 0; left: 0; width: 100%; width: -webkit-calc(100% - 30px); width: -moz-calc(75% - 30px); width: -moz-calc(100% - 30px); width: calc(100% - 30px); right: 0; margin: 0 auto; }
+
 .user-dashboard .has-seperator .foodbakery-dev-appended-cats { margin-bottom: 0; }
 .opt-conts .search-location-map.input-button-loader .acc-submit { min-height: 40px; }
 /*Restaurant Info Style Start*/
