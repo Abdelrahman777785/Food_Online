@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'vendor',
 
+
 ]
 
 MIDDLEWARE = [
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' 
 
 TIME_ZONE = 'UTC'
 
@@ -147,3 +148,19 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# Email configuration
+#EMAIL_HOST : config('EMAIL_HOST')
+#EMAIL_PORT : config('EMAIL_PORT', cast=int)
+#EMAIL_HOST_USER : config('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD : config('EMAIL_HOST_PASSWORD')
+#EMAIL_USE_TLS = True
+#EMAIL_FROM_EMAIL = 'foodonline Marketplace<3d189f776edcce>'
+
+# Email configuration test
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '3d189f776edcce'
+EMAIL_HOST_PASSWORD = '8c9600211b961d'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_FROM_EMAIL = 'foodonline Marketplace<3d189f776edcce>'
