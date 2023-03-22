@@ -67,6 +67,9 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
+    def full_name(self):
+        return f'{self.first_name}, {self.last_name}'
+
     def __str__(self):
         return self.email
     
@@ -98,6 +101,9 @@ class UserProfile(models.Model):
     longitude = models.CharField(max_length=20, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+
+    def full_address(self):
+        return f'{self.address_line_1}, {self.address_line_2}'
 
     def __str__(self):
         return self.user.email

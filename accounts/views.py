@@ -12,6 +12,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 
+from vendor.models import Vendor
 
 # Restrict the vendor from accessing the customer page.
 def check_role_vendor(user):
@@ -235,3 +236,5 @@ def reset_password(request):
             messages.error(request, 'Password do not match!')
             return redirect('reset_password')
     return render(request, 'accounts/reset_password.html')
+
+
