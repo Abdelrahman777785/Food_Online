@@ -15,4 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'foodOnline_main.settings')
 
 application = get_wsgi_application()
 
-app = application
+# app = application
