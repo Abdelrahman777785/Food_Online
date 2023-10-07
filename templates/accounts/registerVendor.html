@@ -68,11 +68,11 @@
 																	{% for field in form %}
 																		{% if field.errors %}
 																			{% for error in field.errors %}
-																				<li style="color: red;">{{error}}</li>
+																				<li style="color: rgb(230, 36, 36)">{{error}}</li>
 																			{% endfor %}														
 																		{% endif %}
 																	{% endfor %}
-																	<li style="color: red;">{{form.non_field_errors}}</li>
+																	<li style="color: rgb(230, 36, 36)">{{form.non_field_errors}}</li>
 																</ul>    
 																<div class="row">
 																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

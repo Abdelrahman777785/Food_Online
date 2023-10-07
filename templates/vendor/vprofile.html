@@ -43,12 +43,13 @@
                                                             </ul>
                                                         </div>
                                                         <div class="text-holder">
-                                                            <strong>My Restaurant</strong>
+                                                            <label>Update Profile Picture</label>
                                                             <div class="upload-gallery">
-                                                                {{profile_form.profile_picture}}
+                                                                {{ profile_form.profile_picture }}
                                                             </div>
                                                             <span>Update your avatar manually, If the not set the default Gravatar will be the same as your login email/user account. Max Upload Size: 1MB,</span>
                                                         </div>
+                                                        <label class="text-danger" style="color: rgb(230, 36, 36);">{{ profile_form.profile_picture.errors }}</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -70,11 +71,13 @@
                                                             </ul>
                                                         </div>
                                                         <div class="text-holder">
+                                                            <label>Update Cover Photo</label>
                                                             <div class="upload-gallery">
                                                                 {{profile_form.cover_photo}}
                                                             </div>
                                                             <span>Update your cover image manually, If the not set the default cover image will be showing on your restaurant detail page. Max Upload Size: 1MB,</span>
                                                         </div>
+                                                        <label class="text-danger" style="color: rgb(230, 36, 36);">{{ profile_form.cover_photo.errors }}</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -96,6 +99,7 @@
                                                             </ul>
                                                         </div>
                                                         <div class="text-holder">
+                                                            <label>Update License</label>
                                                             <div class="upload-gallery">
                                                                 {{vendor_form.vendor_license}}
                                                                <!-- <input class="foodbakery-dev-gallery-uploader" style="display:none;" type="file">
@@ -103,6 +107,7 @@
                                                             </div>
                                                             <span>Update your License image manually, If the not set the default activated. Max Upload Size: 1MB,</span>
                                                         </div>
+                                                        <label class="text-danger" style="color: rgb(230, 36, 36);">{{ vendor_form.vendor_license.errors }}</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -112,17 +117,11 @@
                                                         <!--<input type="text" placeholder="i.e Pizza Hut" class="foodbakery-dev-req-field">-->
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="field-holder">
-                                                        <label>Address Line 1 *</label>
-                                                        {{profile_form.address_line_1}}
-                                                        <!--<input type="text" placeholder="i.e Pizza Hut" class="foodbakery-dev-req-field">-->
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="field-holder">
-                                                        <label>Address Line 2</label>
-                                                        {{profile_form.address_line_2}}
+                                                        <label>Address *</label>
+                                                        {{profile_form.address}}
+                                                        <!-- <small class="text-muted float-right">powered by Google</small> -->
                                                         <!--<input type="text" placeholder="i.e Pizza Hut" class="foodbakery-dev-req-field">-->
                                                     </div>
                                                 </div>

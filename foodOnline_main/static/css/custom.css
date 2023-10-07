@@ -40,5 +40,43 @@
   .card-body {
     padding: 20px;
   }
+
+  .btn {
+    padding: 2px 1.75em;
+    font-size: 12px;
+    cursor:pointer;
+    position: relative;
+    top: -10px;
+  }
+  .btn-secondary{
+    background-color: rgb(215, 188, 188);
+  }
+
+
+  .float-right{
+    left: 540px;
+  }
+  
+
+  .table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border-style: hidden;
+    border-spacing: 0;
+    
+  }
+
+  
+  td, th {
+    text-align: left;
+    padding: 0px;
+    border-collapse: collapse;
+    border: 0;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
   
 

@@ -1350,7 +1350,7 @@ a.text-primary:focus {
   color: #286090;
 }
 .text-success {
-  color: #3c763d;
+  color: #1dd620;
 }
 a.text-success:hover,
 a.text-success:focus {
@@ -2271,7 +2271,7 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -2281,8 +2281,7 @@ th {
 .table > tfoot > tr > td {
   padding: 8px;
   line-height: 1.42857143;
-  vertical-align: top;
-  border-top: 1px solid #dddddd;
+
 }
 .table > thead > tr > th {
   vertical-align: bottom;
