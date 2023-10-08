@@ -46,8 +46,15 @@
     font-size: 12px;
     cursor:pointer;
     position: relative;
-    top: -10px;
   }
+  
+  .upload-btn{
+    width: 100%;
+    border-radius: 3px;
+    height: 41px;
+    padding: 7px;
+  }
+
   .btn-secondary{
     background-color: rgb(215, 188, 188);
   }
@@ -79,4 +86,10 @@
     background-color: #dddddd;
   }
   
+.badge-success{
+  background-color: #1dd620;
+}
 
+.badge-danger{
+  background-color: #c73b18;
+}

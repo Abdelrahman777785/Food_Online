@@ -24,7 +24,7 @@ class UserForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
     address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'start typing...', 'required':'required'}))
-    profile_picture = forms.FileField(widget=forms.FileInput(attrs={'class': 'upload-btn foodbakery-dev-cover-upload-btn', 'style':'display:;'}), validators=[allow_only_images_validator]) # style button my restaurant
+    profile_picture = forms.FileField(widget=forms.FileInput(attrs={'class': 'btn-success upload-btn'}), validators=[allow_only_images_validator]) # style button my restaurant
     cover_photo = forms.FileField(widget=forms.FileInput(attrs={'class':'upload-btn foodbakery-dev-cover-upload-btn' , 'style':'display:;'}), validators=[allow_only_images_validator]) # style button my restaurant
     
     latitude = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'})) # close write 
