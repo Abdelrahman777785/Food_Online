@@ -1009,7 +1009,7 @@ li.gal-img.ui-sortable-placeholder, li.ui-sortable-placeholder { background: #EE
 .payment-holder .checkbox-area input[type="checkbox"]:checked + label:after { border-radius: 0; content: "\e5ca"; color: #999; left: 1px; position: absolute; top: 1px; font-weight: 700; font-size: 10px; font-family: "icomoon"; }
 .payment-holder .checkbox-area label:before { border-radius: 3px; content: ""; left: 0; font-weight: normal; position: absolute; top: 0; width: 13px; height: 13px; border: 1px solid #dfdfdf; }
 .user-holder .payment-holder p { margin: 0; line-height: 20px; font-size: 12px; color: #a3a7ab; }
-.payment-holder input[type="submit"] { margin: 20px 0 0; }
+.payment-holder input[type="submit"] { margin: 0 0 0 0; }
 .payment-holder.input-button-loader input[type="submit"] { margin-top: 0; }
 /*Membership Info Start*/
 .foodbakery-pkg-header { border: 1px solid #f4f4f4; background: #FFFFFF; padding: 12px 26px; }

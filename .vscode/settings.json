@@ -2,8 +2,10 @@
     "liveServer.settings.fullReload": true,
     "editor.linkedEditing": true,
     "cSpell.words": [
+        "chkcart",
         "daterangepicker",
         "Foodbakery",
+        "fooditem",
         "fooditems",
         "vprofile"
     ]

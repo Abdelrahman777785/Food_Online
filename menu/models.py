@@ -23,11 +23,11 @@ class Category(models.Model):
 
 class FoodItem(models.Model):
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='fooditems')
     food_title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(max_length=250, blank=True) 
-    price = models.DecimalField(decimal_places=3, max_digits=10)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
     image = models.ImageField(upload_to='foodimages')
     is_available = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)

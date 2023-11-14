@@ -85,11 +85,50 @@
   tr:nth-child(even) {
     background-color: #dddddd;
   }
-  
+
+/* badges */
 .badge-success{
   background-color: #1dd620;
 }
-
 .badge-danger{
   background-color: #c73b18;
+}
+.badge-warning {
+  color: #212529;
+  background-color: #ffc107;
+}
+.badge-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+.badge-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+.badge-dark {
+  color: #fff;
+  background-color: #343a40;
+}
+.badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+/* end badges */
+
+.btn-outline-danger {
+  color: #dc3545;
+  background-color: transparent;
+  background-image: none;
+  border-color: #dc3545;
+  
+}
+
+
+
+.d-none {
+  display: none;
 }
