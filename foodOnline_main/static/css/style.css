@@ -95,8 +95,8 @@ h6 { font-size: 14px; line-height: 18px; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #333; text-decoration: none; outline: none; }
 /* Heading Typo End */
 [class*="col-lg"], [class*="col-md"], [class*="col-sm"] { display: inline-block; float: none; margin: 0 -4px 0 0; vertical-align: top;padding: auto; }
-a { text-decoration: none; color: #333; outline: none; -moz-transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
-a:hover, a:focus { color: #000; outline: none; text-decoration: none; }
+a { text-decoration: none; outline: none; -moz-transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
+a:hover, a:focus { color: #000; outline: none; text-decoration: underline; }
 p { line-height: 24px; margin: 0 0 0px; }
 figure { margin-bottom: 0; position: relative; }
 /* Blockquote typo */

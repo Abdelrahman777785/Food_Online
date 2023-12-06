@@ -1,10 +1,11 @@
+from datetime import date, datetime
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .context_processors import get_cart_amounts, get_cart_counter
 
 from menu.models import Category, FoodItem
 
-from vendor.models import Vendor
+from vendor.models import Vendor ,OpeningHour
 from django.db.models import Prefetch
 from .models import Cart
 from django.contrib.auth.decorators import login_required
@@ -31,7 +32,15 @@ def vendor_detail(request, vendor_slug):
             queryset= FoodItem.objects.filter(is_available=True)
         )
     )
+
+    opening_hours = OpeningHour.objects.filter(vendor=vendor).order_by('day','-from_hour')
     
+    # Check current day's opening hours.
+    today_date = date.today()
+    today = today_date.isoweekday()
+
+    current_opening_hours = OpeningHour.objects.filter(vendor=vendor, day=today)
+   
     if request.user.is_authenticated:
         cart_items = Cart.objects.filter(user=request.user)
     else:
@@ -40,6 +49,9 @@ def vendor_detail(request, vendor_slug):
         'vendor': vendor,
         'categories': categories,
         'cart_items': cart_items,
+        'opening_hours': opening_hours,
+        'current_opening_hours': current_opening_hours,
+        
     }
     return render(request, 'marketplace/vendor_detail.html', context)
 
@@ -121,4 +133,14 @@ def delete_from_cart(request, cart_id):
                 return JsonResponse({'status': 'Failed', 'message': 'Cart Item does not exist!'})
         else:
             return JsonResponse({'status': 'Failed', 'message': 'Invalid Request!'})
+
+
+def search(request):
+    # address = request.GET['address']
+    radius = request.GET['radius']
+    keyword = request.GET['keyword']
+
+    vendors = Vendor.objects.filter(vendor_name__icontains=keyword, is_approved=True, user__is_active=True)
+    print(vendors)
+    return render(request,'marketplace/listings.html')
 

@@ -3,6 +3,7 @@
     "editor.linkedEditing": true,
     "cSpell.words": [
         "chkcart",
+        "csrfmiddlewaretoken",
         "daterangepicker",
         "Foodbakery",
         "fooditem",

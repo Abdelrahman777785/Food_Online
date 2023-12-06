@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'accounts.context_processors.get_vendor',
+                # 'accounts.context_processors.get_google_api',
                 'marketplace.context_processors.get_cart_counter',
                 'marketplace.context_processors.get_cart_amounts',
 
@@ -170,3 +171,6 @@ EMAIL_HOST_PASSWORD = '8c9600211b961d'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_FROM_EMAIL = 'foodonline Marketplace<3d189f776edcce>'
+
+
+# MAPQUEST_API_KEY = 'ZF9FL4wX94kRuMo0xGMilQYlmjdMDGR9'

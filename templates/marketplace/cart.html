@@ -25,7 +25,9 @@
                                     <div id="menu-item-list-6272" class="menu-itam-list">
                                         
                                         <div class="text-center" id="empty-cart" style="display: none;padding: 70px;">
-                                            <h3>Cart is empty</h3>
+                                            <h3>Your cart is empty.</h3>
+                                            <a href="/marketplace/" class="btn btn-cart btn-primary">Continue Shopping</a>
+                                            <img class="" style="width: 130px;" src="{% static 'images\cart-empty-2.png' %}">
                                         </div>
 
                                         <ul>
@@ -54,8 +56,11 @@
                                             </li>
                                             {% endfor %}
                                         {% else %}
-                                            <div class="text-center" style="padding: 70px;">
-                                                <h3>Cart is empty</h3>
+                                            <div class="text-center" style="padding: 70px;display: block;">
+                                                <img class="" style="width: 130px;" src="{% static 'images\cart-empty-2.svg' %}">
+                                                <h3>Your cart is empty.</h3>
+                                                <a href="/marketplace/" class="btn btn-cart btn-primary" style="">Continue Shopping</a>
+                                                
                                             </div>
                                         {% endif %}
                                         </ul>
