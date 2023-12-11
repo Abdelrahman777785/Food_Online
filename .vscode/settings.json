@@ -2,6 +2,7 @@
     "liveServer.settings.fullReload": true,
     "editor.linkedEditing": true,
     "cSpell.words": [
+        "CGST",
         "chkcart",
         "csrfmiddlewaretoken",
         "daterangepicker",

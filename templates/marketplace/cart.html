@@ -27,7 +27,7 @@
                                         <div class="text-center" id="empty-cart" style="display: none;padding: 70px;">
                                             <h3>Your cart is empty.</h3>
                                             <a href="/marketplace/" class="btn btn-cart btn-primary">Continue Shopping</a>
-                                            <img class="" style="width: 130px;" src="{% static 'images\cart-empty-2.png' %}">
+                                            <img class="" style="width: 130px;" src="{% static 'images\cart-empty-2.jpg' %}">
                                         </div>
 
                                         <ul>
@@ -35,7 +35,7 @@
                                             {% for item in cart_items %}
                                             <li id="cart-item-{{ item.id }}">
                                                 <div class="image-holder"> <a><img src="{{ item.fooditem.image.url }}" alt=""></a></div>
-                                                <div class="text-holder">
+                                                <div class="text-holder" style="width: 310px;">
                                                     <h6>{{ item.fooditem }}</h6>
                                                     <span>{{ item.fooditem.description }}</span>
                                                     <a href="{% url 'vendor_detail' item.fooditem.vendor.vendor_slug %}" class="badge badge-warning">{{ item.fooditem.vendor }}</a>
@@ -57,9 +57,9 @@
                                             {% endfor %}
                                         {% else %}
                                             <div class="text-center" style="padding: 70px;display: block;">
-                                                <img class="" style="width: 130px;" src="{% static 'images\cart-empty-2.svg' %}">
+                                                <img class="" style="width: 130px;" src="{% static 'images\cart-empty-2.jpg' %}">
                                                 <h3>Your cart is empty.</h3>
-                                                <a href="/marketplace/" class="btn btn-cart btn-primary" style="">Continue Shopping</a>
+                                                <a href="/marketplace/" class="btn btn-cart btn-primary">Continue Shopping</a>
                                                 
                                             </div>
                                         {% endif %}
@@ -90,8 +90,11 @@
                                 <div class="price-area dev-menu-price-con">
                                     <ul>
                                         <li>Subtotal <span class="price">$<em class="dev-menu-subtotal" id="subtotal">{{ subtotal }}</em></span></li>
-                                        
-                                        <li>Tax <span class="price">$<em class="dev-menu-vtax" id="tax">{{ tax }}</em></span></li>
+                                        {% for key, value in tax_dict.items %}
+                                            {% for i, j in value.items %}
+                                            <li>{{ key }} <small>({{ i }}%)</small> <span class="price">$<em class="dev-menu-vtax" id="tax-{{ key }}">{{ j }}</em></span></li>
+                                            {% endfor %}
+                                        {% endfor %}
                                     </ul>
                                     <p class="total-price">Total <span class="price">$<em class="dev-menu-grtotal" id="total">{{ grand_total }}</em></span></p>
                                 </div>

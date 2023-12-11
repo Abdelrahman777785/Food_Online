@@ -5,7 +5,7 @@ from vendor.models import Vendor
 from accounts.models import User 
 
 def home(request):
-    vendors = Vendor.objects.filter(is_approved=True, user__is_active=True)[:8]
+    vendors = Vendor.objects.filter(is_approved=True, user__is_active=True)[:20]
     vendor_count = vendors.count()
 
     # Show in html in home page
