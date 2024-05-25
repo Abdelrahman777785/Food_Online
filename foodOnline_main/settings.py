@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'menu',
     'marketplace',
     'customers',
-
+    'orders',
 
 ]
 
@@ -77,6 +77,8 @@ TEMPLATES = [
                 # 'accounts.context_processors.get_google_api',
                 'marketplace.context_processors.get_cart_counter',
                 'marketplace.context_processors.get_cart_amounts',
+                'accounts.context_processors.get_paypal_client_id',
+
 
             ],
         },
@@ -177,3 +179,9 @@ EMAIL_FROM_EMAIL = 'foodonline Marketplace<3d189f776edcce>'
 
 
 # MAPQUEST_API_KEY = 'ZF9FL4wX94kRuMo0xGMilQYlmjdMDGR9'
+
+
+PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID')
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
+#SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'

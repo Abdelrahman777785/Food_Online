@@ -220,7 +220,7 @@ jQuery(document).ready(function () {
         this.element = element;
         this.width = width;
         this.order = eleOrder;
-        this.offsetTop = element.offset().top;
+        this.offsetTop = element.offset();
         this.defualtWidth = element.parent().width();
         this.defualtPos = elePos;
         this.stopper = stopTarget;
@@ -496,14 +496,14 @@ jQuery(document).ready(function () {
     });
     /*Delivery Timing Dropdown Functions End*/
 
-    if ($(window).width() > 991) {
-        if (jQuery(".sticky-sidebar").length != '') {
-            $('.sticky-sidebar')
-                .theiaStickySidebar({
-                    additionalMarginTop: 30
-                });
-        }
-    }
+    // if ($(window).width() > 991) {
+    //     if (jQuery(".sticky-sidebar").length != '') {
+    //         $('.sticky-sidebar')
+    //             .theiaStickySidebar({
+    //                 additionalMarginTop: 30
+    //             });
+    //     }
+    // }
     /*Sticky Function End*/
 
     /*Location Popup Function Start*/

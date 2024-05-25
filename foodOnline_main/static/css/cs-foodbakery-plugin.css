@@ -726,7 +726,7 @@ ul.sub-nav li a { line-height: 20px; }
 .stickynav-tabs.nav.nav-tabs { background: #ebedf3; z-index: 2; position: relative; }
 .stickynav-tabs.nav.nav-tabs:before { position: absolute; top: -30px; background: #ebedf3; z-index: 0; width: 100%; height: 30px; }
 /* End style tabs */
-.menu-itam-holder { background-color: #fff; padding: 8px 30px 0; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
+.menu-itam-holder { background-color: #fff; padding: 20px 30px 20px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
 .menu-itam-holder:after { content: ''; display: block; clear: both; }
 .menu-itam-holder .field-holder { position: relative; margin-bottom: 35px; }
 .menu-itam-holder .field-holder.sticky-search { z-index: 1; }

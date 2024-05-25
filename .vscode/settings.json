@@ -5,6 +5,7 @@
         "CGST",
         "chkcart",
         "csrfmiddlewaretoken",
+        "csrftoken",
         "daterangepicker",
         "Foodbakery",
         "fooditem",
