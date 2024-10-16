@@ -56,8 +56,9 @@
 	<!-- <script src="path/to/theia-sticky-sidebar.js"></script> -->
 
 	<!-- <script src="{% static 'js/functions-plugin.js' %}"></script> -->
-
-
+	<!-- Google apis -->
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places&callback=initAutoComplete" async defer></script> -->
+	<script src="{% static 'js/custom.js' %}"></script>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -66,13 +67,32 @@
         <![endif]-->
 
 	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-	<script src="{% static 'js/custom.js' %}"></script>
+	
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-	<!-- maps api mapquest -->
+	<!-- maps api leaflet -->
 	<!-- <script src="https://www.mapquestapi.com/search/v4/place?sort=distance&feedback=false&key={{MAPQUEST_API_KEY}}"  async defer></script> -->
-	<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/> -->
-	<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+	<script src="{% static 'leaflet/data/line.js' %}"></script>
+	<script src="{% static 'leaflet/data/point.js' %}"></script>
+	<script src="{% static 'leaflet/data/polygon.js' %}"></script>
+	<script src="{% static 'leaflet/data/nepaldata.js' %}"></script>
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+	<script src="{% static 'leaflet/data/usstates.js' %}"></script>
+
+
+
+	<!-- ................................................................................................................................................... -->
+	<!--Load the Leaflet CSS file -->
+	<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" /> -->
+
+	<!--Load the Leaflet JavaScript file -->
+	<!-- <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script> -->
+	<!-- ................................................................................................................................................... -->
+
 
 	<!-- <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"> -->

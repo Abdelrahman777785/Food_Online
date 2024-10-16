@@ -18,7 +18,7 @@ def get_user_profile(request):
 
 
 # def get_google_api(request):
-#     return {'MAPQUEST_API_KEY': settings.MAPQUEST_API_KEY}
+#     return {'GOOGLE_API_KEY': settings.GOOGLE_API_KEY}
 
 
 

@@ -1,6 +1,16 @@
 asgiref==3.5.2
 Django==3.2.5
 psycopg2==2.9.5
+certifi==2023.11.17
+charset-normalizer==3.3.2
+django-leaflet==0.29.0
+django-paypal==2.1
+Django-Verify-Email==2.0.3
+idna==3.6
+Pillow==9.4.0
+python-decouple==3.6
 pytz==2022.6
+requests==2.31.0
+simplejson==3.19.2
 sqlparse==0.4.3
-gunicorn
+urllib3==2.1.0

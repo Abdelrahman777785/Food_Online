@@ -19,30 +19,30 @@
 //         document.getElementById('id_address').placeholder = "Start typing...";
 //     }
 //     else{
-//         // console.log('place name=>', place.name)
+//         console.log('place name=>', place.name)
 //     }
 //     // get the address components and assign them to the fields 
-//     //console.log(place)
+//     console.log(place)
 
-//     var geocoder = new google.maps.Geocoder()
-//     var address = document.getElementById('id_address').value 
+//     // var geocoder = new google.maps.Geocoder()
+//     // var address = document.getElementById('id_address').value 
 
-//     geocoder.geocode({'address': address}, function(results, status){
+//     // geocoder.geocode({'address': address}, function(results, status){
 
-//         if(status == google.maps.GeocoderStatus.OK){
-//             var latitude = results[0].geometry.location.lat();
-//             var longitude = results[0].geometry.location.lng();
+//     //     if(status == google.maps.GeocoderStatus.OK){
+//     //         var latitude = results[0].geometry.location.lat();
+//     //         var longitude = results[0].geometry.location.lng();
 
-//             //console.log('lat=>', latitude);
-//             //console.log('lng=>', longitude);
+//     //         //console.log('lat=>', latitude);
+//     //         //console.log('lng=>', longitude);
 
-//             $('#id_latitude').val(latitude);
-//             $('#id_longitude').val(longitude);
+//     //         $('#id_latitude').val(latitude);
+//     //         $('#id_longitude').val(longitude);
 
-//             $('#id_address').val(address);
+//     //         $('#id_address').val(address);
 
-//         }
-//     });
+//     //     }
+//     // });
 // }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // let autocomplete;
@@ -192,6 +192,55 @@
 // }
 
 // map.on('click', onMapClick);
+//............................................................................................................
+
+// jQuery(function ($) {
+//     new BravoMapEngine('map_content', {
+//         disableScripts: true,
+//         fitBounds: true,
+//         center: [{{$row->map_lat ?? setting_item('map_lat_default',51.505 ) }}, {{$row->map_lng ?? setting_item('map_lng_default',-0.09 ) }}],
+//         zoom: {{$row->map_zoom ?? "8"}},
+//         ready: function (engineMap) {
+//             @if($row->map_lat && $row->map_lng)
+//             engineMap.addMarker([{{$row->map_lat}}, {{$row->map_lng}}], {
+//                 icon_options: {}
+//             });
+//             @endif
+//             engineMap.on('click', function (dataLatLng) {
+//                 engineMap.clearMarkers();
+//                 engineMap.addMarker(dataLatLng, {
+//                     icon_options: {}
+//                 });
+//                 $("input[name=map_lat]").attr("value", dataLatLng[0]);
+//                 $("input[name=map_lng]").attr("value", dataLatLng[1]);
+//             });
+//             engineMap.on('zoom_changed', function (zoom) {
+//                 $("input[name=map_zoom]").attr("value", zoom);
+//             });
+//             if (bookingCore.map_provider === "gmap") {
+//                 engineMap.searchBox($('#customPlaceAddress'), function (dataLatLng) {
+//                     engineMap.clearMarkers();
+//                     engineMap.addMarker(dataLatLng, {
+//                         icon_options: {}
+//                     });
+//                     $("input[name=map_lat]").attr("value", dataLatLng[0]);
+//                     $("input[name=map_lng]").attr("value", dataLatLng[1]);
+//                 });
+//             }
+//             engineMap.searchBox($('.bravo_searchbox'), function (dataLatLng) {
+//                 engineMap.clearMarkers();
+//                 engineMap.addMarker(dataLatLng, {
+//                     icon_options: {}
+//                 });
+//                 $("input[name=map_lat]").attr("value", dataLatLng[0]);
+//                 $("input[name=map_lng]").attr("value", dataLatLng[1]);
+//             });
+//         }
+//     });
+// })
+    
+
+//00000000000000000000000000000000000000000000000000000000000000000000000
 
 //-------------------------------------------------------------------------------------------------------------
 

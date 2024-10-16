@@ -76,7 +76,13 @@
                                     </ul>
                                     <p class="total-price">Total <span class="price">$<em class="dev-menu-grtotal" id="total">{{ grand_total }}</em></span></p>
                                 </div>
+                                {% if order.payment_method == 'Paypal' %}
+                                <!-- Checkout Button -->
                                 <div id="paypal-button-container"></div>
+                                {% elif order.payment_method == 'Cash' %}
+                                <button class="btn btn-danger w-100" style="width: 100%;">Pay with Cash</button>
+                                {% endif %}
+
                             </div>
                         
                         </div>
