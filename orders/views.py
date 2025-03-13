@@ -10,6 +10,7 @@ from accounts.utils import send_notification
 from django.contrib.auth.decorators import login_required
 
 
+
 @login_required(login_url='login')
 # Create your views here.
 def place_order(request):
@@ -154,3 +155,5 @@ def order_complete(request):
     except:
         return redirect('home')
     
+
+

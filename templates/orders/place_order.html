@@ -76,7 +76,7 @@
                                     </ul>
                                     <p class="total-price">Total <span class="price">$<em class="dev-menu-grtotal" id="total">{{ grand_total }}</em></span></p>
                                 </div>
-                                {% if order.payment_method == 'Paypal' %}
+                                {% if order.payment_method == 'PayPal' %}
                                 <!-- Checkout Button -->
                                 <div id="paypal-button-container"></div>
                                 {% elif order.payment_method == 'Cash' %}
@@ -113,6 +113,8 @@
         </div>
     </div>
 </div>
+
+
 <script>
     function getCookie(name) {
     var cookieValue = null;
@@ -175,6 +177,7 @@
 
     }).render('#paypal-button-container');
 
+
     // send the data to payments view to store in the database
     function sendTransaction(transaction_id, payment_method, status){
         $.ajax({
@@ -193,6 +196,7 @@
             }
         })
     }
+
 
 </script>
 <!-- Main Section End -->

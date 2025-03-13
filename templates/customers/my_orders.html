@@ -14,31 +14,7 @@
                   {% include 'includes/c_sidebar.html' %}
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="user-dashboard loader-holder">
-                        <div class="user-holder">
-                            <h5 class="text-uppercase">Overview</h5>
-                            <div class="row"></div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <div class="card" style="border: 1px solid #ccc;border-radius: 5px;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);margin: 20px;width: 218px;height: 116px;background-color: #fff;">
-                                        <div class="card-header">
-                                            Total Orders
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <a href="javascript:void(0)"><h5 class="card-title">{{ orders_count }}</h5></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-4 col-xs-4">
-                                    <div class="card" style="border: 1px solid #ccc;border-radius: 5px;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);margin: 20px;width: 450px;height: 116px;background-color: #fff;">
-                                        <div class="card-header">
-                                            Logged in as: <b>{{ user.email }}</b>
-                                        </div>
-                                        <div class="card-body text-center">
-                                            <a href="{% url 'cprofile' %}"><h5 class="card-title"><i class="fa fa-edit"></i> Edit Profile</h5></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                        
                             <h5 class="text-uppercase">Recent Orders</h5>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -50,17 +26,15 @@
                                                     <div>Date</div>
                                                     <div>Total Price</div>
                                                     <div>Charges</div>
-                                                    
                                                     <div>Status</div>
                                                     <div>Detail</div>
                                                 </li>
-                                                {% for order in recent_orders %}
+                                                {% for order in orders %}
                                                 <li class="order-heading-titles">
                                                     <div><a href="{% url 'order_detail' order.order_number %}">{{ order.order_number }}</a></div>
                                                     <div>{{ order.created_at }}</div>
                                                     <div>$ {{ order.total }}</div>
                                                     <div>$ {{ order.total_tax }}</div>
-                                                    
                                                     {% if order.status == 'Completed' %}
                                                     <div><span class="order-status" style="background-color: #0f9d58;">Completed</span></div>
                                                     {% elif order.status == 'New' %}
@@ -70,7 +44,7 @@
                                                     {% elif order.status == 'Cancelled' %}
                                                     <div><span class="order-status" style="background-color: #ea2828;">Cancelled</span></div>
                                                     {% endif %}
-                                                    <div><a href="#" data-toggle="modal" data-target="#order-det-22606"><i class="icon-plus2 text-color"></i></a></div>
+                                                    <div><a href="{% url 'order_detail' order.order_number %}"><i class="icon-plus2 text-color"></i></a></div>
                                                 </li>
                                                 {% endfor %}
                                             </ul>
@@ -88,7 +62,7 @@
                                                                 <ul class="order-detail-options">
                                                                     <li class="order-number">
                                                                         <strong>Order ID:</strong>
-                                                                        <span>{{ order.order_number }}</span>
+                                                                        <span>22606</span>
                                                                     </li>
                                                                     <li class="req-delivery">
                                                                         <strong>Delivery Time:</strong>
@@ -150,13 +124,15 @@
                                                                         <div>Products</div>
                                                                         <div>Price per</div>
                                                                     </li>
-                                                                    <li class="order-heading-titles">
-                                                                        <div>
-                                                                            <h4>Pizzas</h4>
-                                                                            <h5>Foodbakery Special 9" Deep Pan</h5>
-                                                                        </div>
-                                                                        <div><span class="category-price">£4.80</span></div>
-                                                                    </li>
+                                                                    {% for item in cart_items %}
+                                                                        <li class="order-heading-titles">
+                                                                            <div>
+                                                                                <h4>{{ item.fooditem }}</h4>
+                                                                                <h5>{{ item.fooditem.description }}</h5>
+                                                                            </div>
+                                                                            <div><span class="category-price">${{ item.fooditem.price }}</span></div>
+                                                                        </li>
+                                                                    {% endfor %}
                                                                     <li class="order-heading-titles">
                                                                         <div>
                                                                             <h4>Pizzas</h4>
@@ -171,27 +147,7 @@
                                                                         </div>
                                                                         <div><span class="category-price">£3.90</span></div>
                                                                     </li>
-                                                                    <li class="order-heading-titles">
-                                                                        <div>
-                                                                            <h4>Garlic Bread</h4>
-                                                                            <h5>Garlic Bread 12" Deep</h5>
-                                                                        </div>
-                                                                        <div><span class="category-price">£3.50</span></div>
-                                                                    </li>
-                                                                    <li class="order-heading-titles">
-                                                                        <div>
-                                                                            <h4>Kebabs</h4>
-                                                                            <h5>Kebabs With Naan</h5>
-                                                                        </div>
-                                                                        <div><span class="category-price">£4.50</span></div>
-                                                                    </li>
-                                                                    <li class="order-heading-titles">
-                                                                        <div>
-                                                                            <h4>Burgers</h4>
-                                                                            <h5>Quarter Pounder</h5>
-                                                                        </div>
-                                                                        <div><span class="category-price">£3.00</span></div>
-                                                                    </li>
+                                                                    
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -276,19 +232,19 @@
                                                                             <ul class="customer-detail">
                                                                                 <li>
                                                                                     <strong>Name :</strong>
-                                                                                    <span>Buyer Demo</span>
+                                                                                    <span>{{ order.name }}</span>
                                                                                 </li>
                                                                                 <li>
                                                                                     <strong>Phone Number :</strong>
-                                                                                    <span>0123456789</span>
+                                                                                    <span>{{ order.phone }}</span>
                                                                                 </li>
                                                                                 <li>
                                                                                     <strong>Email :</strong>
-                                                                                    <span>dum4@chimpgroup.com</span>
+                                                                                    <span>{{ order.email }}</span>
                                                                                 </li>
                                                                                 <li>
                                                                                     <strong>Address :</strong>
-                                                                                    <span>London</span>
+                                                                                    <span>{{ order.address }}</span>
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -317,50 +273,18 @@
                                                                             <ul class="categories-order table-generic">
                                                                                 <li class="order-heading-titles">
                                                                                     <div>Products</div>
+                                                                                    <div>Quantity</div>
                                                                                     <div>Price per</div>
                                                                                 </li>
-                                                                                <li class="order-heading-titles">
-                                                                                    <div>
-                                                                                        <h4>Pizzas</h4>
-                                                                                        <h5>Foodbakery Special 9" Deep Pan</h5>
-                                                                                    </div>
-                                                                                    <div><span class="category-price">£4.80</span></div>
-                                                                                </li>
-                                                                                <li class="order-heading-titles">
-                                                                                    <div>
-                                                                                        <h4>Pizzas</h4>
-                                                                                        <h5>Foodbakery Special 9" Deep Pan</h5>
-                                                                                    </div>
-                                                                                    <div><span class="category-price">£4.80</span></div>
-                                                                                </li>
-                                                                                <li class="order-heading-titles">
-                                                                                    <div>
-                                                                                        <h4>Pizzas</h4>
-                                                                                        <h5>Foodbakery Special 12" Deep Pan</h5>
-                                                                                    </div>
-                                                                                    <div><span class="category-price">£3.90</span></div>
-                                                                                </li>
-                                                                                <li class="order-heading-titles">
-                                                                                    <div>
-                                                                                        <h4>Garlic Bread</h4>
-                                                                                        <h5>Garlic Bread 12" Deep</h5>
-                                                                                    </div>
-                                                                                    <div><span class="category-price">£3.50</span></div>
-                                                                                </li>
-                                                                                <li class="order-heading-titles">
-                                                                                    <div>
-                                                                                        <h4>Kebabs</h4>
-                                                                                        <h5>Kebabs With Naan</h5>
-                                                                                    </div>
-                                                                                    <div><span class="category-price">£4.50</span></div>
-                                                                                </li>
-                                                                                <li class="order-heading-titles">
-                                                                                    <div>
-                                                                                        <h4>Burgers</h4>
-                                                                                        <h5>Quarter Pounder</h5>
-                                                                                    </div>
-                                                                                    <div><span class="category-price">£3.00</span></div>
-                                                                                </li>
+                                                                                {% for ordered in ordered_food %}
+                                                                                    <li class="order-heading-titles">
+                                                                                        <div>
+                                                                                            <h4>{{ ordered.fooditem }}</h4>                                                                                        </div>
+                                                                                        <div><span class="category-price" style="float:none">{{ ordered.quantity }}</span></div>
+                                                                                        <div><span class="category-price" style="float:none">${{ ordered.fooditem.price }}</span></div>
+                                                                                    </li>
+                                                                                {% endfor %}
+                                                                                
                                                                             </ul>
                                                                         </div>
                                                                     </div>

@@ -1,6 +1,6 @@
 from django.urls import path ,include
 from . import views 
-
+from accounts import apis
 
 urlpatterns = [ 
     path('', views.myAccount),
@@ -21,6 +21,8 @@ urlpatterns = [
 
     path('vendor/', include('vendor.urls')),
     path('customer/', include('customers.urls')),
+    path('api/userprofile/', apis.UserProfil_get, name='UserProfil_get'),
+    
 
 
 ]

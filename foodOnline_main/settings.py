@@ -25,7 +25,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # ALLOWED_HOSTS = ['.vercel.app']
 
@@ -172,11 +172,11 @@ MESSAGE_TAGS = {
 
 # Email configuration test
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_HOST_USER = '3d189f776edcce'
-EMAIL_HOST_PASSWORD = '8c9600211b961d'
+EMAIL_HOST_USER = 'a940aa6822a83e'
+EMAIL_HOST_PASSWORD = 'b34e3e245474dd'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
-EMAIL_FROM_EMAIL = 'foodonline Marketplace<3d189f776edcce>'
+EMAIL_FROM_EMAIL = 'foodonline Marketplace<a940aa6822a83e>'
 
 
 # MAPQUEST_API_KEY = 'ZF9FL4wX94kRuMo0xGMilQYlmjdMDGR9'
@@ -189,3 +189,9 @@ PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID')
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 #SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
+
+
+
+# STRIPE 
+# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+# STRIPE_PUBLIC_KEY =  config('STRIPE_PUBLIC_KEY')

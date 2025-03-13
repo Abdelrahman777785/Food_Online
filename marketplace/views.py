@@ -148,7 +148,7 @@ def search(request):
     return render(request,'marketplace/listings.html')
 
 
-
+ 
 @login_required(login_url='login')
 def checkout(request):
     cart_items = Cart.objects.filter(user=request.user).order_by('created_at')
