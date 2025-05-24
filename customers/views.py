@@ -6,6 +6,7 @@ from accounts.forms import UserInForm, UserProfileForm
 from accounts.models import UserProfile
 from marketplace.models import Cart
 from orders.models import Order, OrderedFood
+from django.core.paginator import Paginator ,EmptyPage
 
 
 @login_required(login_url='login')
@@ -38,13 +39,28 @@ def cprofile(request):
 
 
 def my_orders(request):
-    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
-    
+    orders_list = Order.objects.filter(user=request.user).order_by('-created_at')
+
+    page_size = 9  # عدد الطلبات في كل صفحة
+    paginator = Paginator(orders_list, page_size)
+    page = request.GET.get('page', 1)
+
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+
+    try:
+        page_obj = paginator.get_page(page)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+
     context = {
-        'orders':orders,
+        'orders_count': orders_list.count(),
+        'recent_orders': page_obj.object_list,
+        'page_obj': page_obj,
     }
     return render(request, 'customers/my_orders.html', context)
-
 
 def order_detail(request, order_number):
     try:

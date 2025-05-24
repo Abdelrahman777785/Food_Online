@@ -111,7 +111,16 @@
 
 	
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	
+
+
+	<!-- Include Datatables plugin script  -->
+	<link rel="stylesheet" href="//cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css">
+	<script src="//cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#myOrdersTable').DataTable();
+		});
+	</script>
 
 </head>
 

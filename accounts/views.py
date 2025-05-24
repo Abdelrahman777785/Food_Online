@@ -1,13 +1,15 @@
-from django.shortcuts import render ,redirect
+import datetime
+from django.shortcuts import get_object_or_404, render ,redirect
 from django.http.response import HttpResponse
 
 from orders.models import Order
 from vendor.forms import VendorForm
-from .forms import UserForm
+from .forms import UserForm, UserPasswordChangeForm
 from .models import User, UserProfile
 from django.contrib import messages, auth
 from .utils import detectUser, send_verification_email
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import update_session_auth_hash
 
 from django.core.exceptions import PermissionDenied
 from django.utils.http import urlsafe_base64_decode
@@ -15,6 +17,12 @@ from django.contrib.auth.tokens import default_token_generator
 
 from vendor.models import Vendor
 from django.template.defaultfilters import slugify
+from django.core.paginator import Paginator
+
+
+
+
+
 # Restrict the vendor from accessing the customer page.
 def check_role_vendor(user):
     if user.role == 1:
@@ -141,6 +149,10 @@ def activate(request, uidb64, token):# --> urls.py
         return redirect('myAccount')
 
 
+# # # # # # # # # # # # # # # # # #
+          # Login #
+# # # # # # # # # # # # # # # # # #
+
 def login(request):# --> urls.py
     if request.user.is_authenticated:
         messages.warning(request, 'You are already logged in!')
@@ -161,6 +173,10 @@ def login(request):# --> urls.py
 
     return render(request, 'accounts/login.html')
 
+# # # # # # # # # # # # # # # # # #
+          # Logout #
+# # # # # # # # # # # # # # # # # #
+
 def logout(request):# --> urls.py
     auth.logout(request)
     messages.info(request, 'Your are logged out.')
@@ -175,13 +191,26 @@ def myAccount(request):# --> urls.py
 
 @login_required(login_url='login')
 @user_passes_test(check_role_customer)
-def custDashboard(request):# --> urls.py
-    orders = Order.objects.filter(user=request.user, is_ordered=True)
-    recent_orders = orders[:7]
+def custDashboard(request):
+    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')# --> models.py
+
+    # إعداد الترقيم
+    page_size = 5  # عدد الطلبات في كل صفحة
+    paginator = Paginator(orders, page_size)
+    page = request.GET.get('page', 1)
+
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1  # الرجوع للصفحة الأولى في حال وجود خطأ
+
+    page_obj = paginator.get_page(page)  # جلب الصفحة المطلوبة
+
     context = {
-        'orders': orders,
+        'orders': orders,  # جميع الطلبات (إذا كنت تحتاجها في أماكن أخرى)
         'orders_count': orders.count(),
-        'recent_orders': recent_orders,
+        'recent_orders': page_obj.object_list,  # الطلبات في الصفحة الحالية فقط
+        'page_obj': page_obj,  # الكائن الخاص بالترقيم (يحتوي على مزيد من المعلومات)
     }
     return render(request, 'accounts/custDashboard.html', context)
 
@@ -189,7 +218,38 @@ def custDashboard(request):# --> urls.py
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
 def vendorDashboard(request):# --> urls.py
-    return render(request, 'accounts/vendorDashboard.html')
+    vendor = Vendor.objects.get(user=request.user)
+    orders = Order.objects.filter(vendors__in=[vendor.id], is_ordered=True).order_by('-created_at')
+    # إعداد الترقيم
+    page_size = 5
+    paginator = Paginator(orders, page_size)
+    page = request.GET.get('page', 1)
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+    page_obj = paginator.get_page(page)
+    # current month's revenue
+    current_month = datetime.datetime.now().month
+    current_month_orders = orders.filter(vendors__in=[vendor.id],created_at__month=current_month)
+    current_month_revenue = 0
+    for i in current_month_orders:
+        current_month_revenue += i.get_total_by_vendor()['grand_total']
+
+    # total revenue
+    total_revenue = 0
+    for i in orders:
+        total_revenue += i.get_total_by_vendor()['grand_total']
+
+    context = {
+        'orders': orders,
+        'orders_count': orders.count(),
+        'recent_orders': page_obj.object_list,
+        'page_obj': page_obj,
+        'total_revenue': total_revenue,
+        'current_month_revenue': current_month_revenue,
+    }
+    return render(request, 'accounts/vendorDashboard.html', context)
 
 
 
@@ -212,6 +272,11 @@ def forgot_password(request):
 
     return render(request, 'accounts/forgot_password.html')
 
+
+
+# # # # # # # # # # # # # # # # # #
+       # Reset Password #
+# # # # # # # # # # # # # # # # # #
 
 def reset_password_validate(request, uidb64, token):
     # validate the user by decoding the token and user pk
@@ -247,4 +312,33 @@ def reset_password(request):
             return redirect('reset_password')
     return render(request, 'accounts/reset_password.html')
 
+
+
+# # # # # # # # # # # # # # # # # #
+    # Change Password #
+# # # # # # # # # # # # # # # # # #
+
+@login_required(login_url='login')
+@user_passes_test(check_role_customer)
+def change_password(request):
+    user = request.user
+    profile = get_object_or_404(UserProfile, user=user)
+
+    if request.method == 'POST':
+        form = UserPasswordChangeForm(user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Password changed successfully.')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = UserPasswordChangeForm(user)
+
+    context = {
+        'form': form,
+        'profile': profile
+    }
+    return render(request, 'accounts/change_password.html', context)
 

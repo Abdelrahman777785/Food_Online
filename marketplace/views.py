@@ -13,17 +13,39 @@ from django.db.models import Prefetch
 from .models import Cart
 from django.contrib.auth.decorators import login_required
 from orders.forms import OrderForm
+from django.core.paginator import Paginator ,EmptyPage
+
+
 
 def marketplace(request):
     vendors = Vendor.objects.filter(is_approved=True, user__is_active=True)
     vendor_count = vendors.count()
+    # Filter vendors based on the search query ?
+
+    # paginator #
+    # Create a Paginator object with the list of vendors and the desired page size
+    page_size = 5  # عدد الطلبات في كل صفحة
+    paginator = Paginator(vendors, page_size)
+    page = request.GET.get('page', 1)
+
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+
+    try:
+        page_obj = paginator.get_page(page)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+
     context = {
-        'vendors':vendors,
+        'vendors': page_obj.object_list,
         'vendor_count':vendor_count,
+        'page_obj': page_obj,
     }
     return render(request, 'marketplace/listings.html', context)
 
-
+ 
 
 
 def vendor_detail(request, vendor_slug):

@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from accounts.forms import UserProfileForm
 from accounts.models import UserProfile
 from menu.forms import CategoryForm, FoodItemForm
+from orders.models import Order, OrderedFood
 from .models import Vendor , OpeningHour
 from .forms import VendorForm, OpeningHourForm
 from django.contrib import messages
@@ -12,6 +13,7 @@ from accounts.views import check_role_vendor
 from menu.models import Category, FoodItem
 from django.template.defaultfilters import slugify
 from django.http import HttpResponse, JsonResponse
+from django.core.paginator import Paginator
 
 
 def get_vendor(request):
@@ -237,10 +239,43 @@ def remove_opening_hours(request, pk=None):
 
 
 
+def order_detail(request, order_number):
+    try:
+        order = Order.objects.get(order_number=order_number, is_ordered=True)
+        ordered_food = OrderedFood.objects.filter(order=order, fooditem__vendor=get_vendor(request))
+    except:
+        return redirect('vendor')
+    
+    context = {
+        'order': order,
+        'ordered_food': ordered_food,
+        'subtotal': order.get_total_by_vendor()['subtotal'],
+        'tax_data': order.get_total_by_vendor()['tax_dict'],
+        'grand_total': order.get_total_by_vendor()['grand_total'],
+    }
+    return render(request, 'vendor/order_detail.html', context)
 
 
+def my_orders(request):
+    vendor = Vendor.objects.get(user=request.user)
+    orders = Order.objects.filter(vendors__in=[vendor.id], is_ordered=True).order_by('-created_at')
+    # إعداد الترقيم
+    page_size = 5
+    paginator = Paginator(orders, page_size)
+    page = request.GET.get('page', 1)
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+    page_obj = paginator.get_page(page)
 
-
+    context = {
+        'orders': orders,
+        'orders_count': orders.count(),
+        'recent_orders': page_obj.object_list,
+        'page_obj': page_obj,
+    }
+    return render(request, 'vendor/my_orders.html', context)
 
 
 
